@@ -1,0 +1,49 @@
+{
+  "name": "ost-mappy-client",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bignumber.js": "^8.1.1",
+    "jdenticon": "^2.1.1",
+    "qrcode.react": "^0.9.3",
+    "react": "^16.8.2",
+    "react-cookies": "^0.1.0",
+    "react-dom": "^16.8.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.5"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "aws s3 sync build/ s3://mappy-client.ost.com --acl public-read --profile ost-mappy",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "pre-commit": "lint-staged"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "lint-staged": "^8.1.5",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.16.4"
+  },
+  "pre-commit": [
+    "pre-commit"
+  ],
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --config .prettierrc.json",
+      "git add"
+    ]
+  }
+}
