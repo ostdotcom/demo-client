@@ -21,7 +21,7 @@ export default class Token extends Component {
   }
 
   componentDidMount() {
-    let baseURL = URLPathService.getBaseURL(this.props.params.match.tokenId, this.props.params.match.urlId);
+    let baseURL = URLPathService.getBaseURL(this.props.match.params.tokenId, this.props.match.params.urlId);
     axios
       .get(`${baseURL}token`)
       .then((res) => {

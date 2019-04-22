@@ -18,13 +18,16 @@ class Card extends Component {
         <div className="card shadow">
           <svg className="card-img-top" data-jdenticon-value={this.props.user.app_user_id} />
           <div className="card-body">
-            <h5 className="card-title text-truncate">{this.props.user.fullname}</h5>
+            <h5 className="card-title text-truncate">{this.props.user.username}</h5>
             {this.props.user.token_holder_address ? (
               <React.Fragment>
-                <Link className="btn btn-light mr-2" to={`/user/${this.props.user.app_user_id}`}>
+                <Link
+                  className="btn btn-light mr-2"
+                  to={`/${this.props.tokenId}/${this.props.urlId}/user/${this.props.user.app_user_id}`}
+                >
                   Tx QR
                 </Link>
-                <Link className="btn btn-light" to={`/devices`}>
+                <Link className="btn btn-light" to={`/${this.props.tokenId}/${this.props.urlId}/devices`}>
                   Devices QR
                 </Link>
               </React.Fragment>
@@ -32,7 +35,7 @@ class Card extends Component {
               <span className="text-black-50">User not setup</span>
             )}
           </div>
-          <div className="card-footer text-muted small">{new Date(this.props.user.created_at).toLocaleString()}</div>
+          <div className="card-footer text-muted small">{new Date(this.props.user.cts).toLocaleString()}</div>
         </div>
       </div>
     );

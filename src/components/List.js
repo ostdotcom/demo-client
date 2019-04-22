@@ -114,7 +114,12 @@ class List extends Component {
         <div className="p-4">
           <div className="row">
             {this.state.users.map((user) => (
-              <Card key={user.app_user_id} user={user} />
+              <Card
+                key={user.app_user_id}
+                user={user}
+                tokenId={this.props.match.params.tokenId}
+                urlId={this.props.match.params.urlId}
+              />
             ))}
           </div>
           <nav aria-label="User navigation">
