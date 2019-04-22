@@ -1,6 +1,6 @@
 const URLPathService = {
   getBaseURL: function(tokenId, urlID) {
-    return `https://demo-mappy.stagingost.com/demo/api/${tokenId}/${urlID}/`;
+    return `/demo/api/${tokenId}/${urlID}/`;
   }
 };
 
