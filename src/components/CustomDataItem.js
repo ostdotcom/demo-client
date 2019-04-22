@@ -38,7 +38,7 @@ export default class CustomDataItem extends React.Component {
             <option />
             {this.props.filteredUsers.map((user) => (
               <option key={user.app_user_id} value={user.token_holder_address}>
-                {user.fullname} ({user.token_holder_address})
+                {user.username} ({user.token_holder_address})
               </option>
             ))}
           </select>

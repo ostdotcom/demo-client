@@ -4,7 +4,7 @@ import AuthService from '../services/AuthService';
 
 const Header = () => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-    <Link className="navbar-brand" to="/users">
+    <Link className="navbar-brand" to="users">
       OST Mappy Client
     </Link>
     <button

@@ -179,7 +179,7 @@ class CustomData extends Component {
                 <option />
                 {this.state.filteredUsers.map((user) => (
                   <option value={user.app_user_id} key={user.app_user_id}>
-                    {user.fullname}
+                    {user.username}
                   </option>
                 ))}
               </select>
