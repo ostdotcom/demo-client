@@ -27,7 +27,7 @@ class Devices extends Component {
     this.setState({
       isLoaded: false
     });
-    let baseURL = URLPathService.getBaseURL(this.props.params.match.tokenId, this.props.params.match.urlId);
+    let baseURL = URLPathService.getBaseURL(this.props.match.params.tokenId, this.props.match.params.urlId);
     axios
       .get(`${baseURL}devices`)
       .then((res) => {

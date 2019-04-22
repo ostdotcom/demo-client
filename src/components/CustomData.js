@@ -71,7 +71,7 @@ class CustomData extends Component {
   getData = () => {
     this.setState({ isLoaded: false });
     let filteredUsers = [],
-      baseURL = URLPathService.getBaseURL(this.props.params.match.tokenId, this.props.params.match.urlId);
+      baseURL = URLPathService.getBaseURL(this.props.match.params.tokenId, this.props.match.params.urlId);
     axios
       .get(`${baseURL}users`)
       .then((res) => {
