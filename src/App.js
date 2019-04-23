@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Redirect, Switch } from 'react-router-dom';
 import Login from './components/Login';
 import List from './components/List';
 import Header from './components/Header';
@@ -40,14 +40,15 @@ const PublicRoute = ({ component: Component, ...rest }) => (
 
 const App = () => (
   <HashRouter basename={window.location.pathname}>
-    <React.Fragment>
+    <Switch>
       <PublicRoute exact path="/:tokenId/:urlId/" component={Login} />
       <PrivateRoute path="/:tokenId/:urlId/users" component={List} />
       <PrivateRoute path="/:tokenId/:urlId/user/:userId" component={TxDetails} />
       <PrivateRoute path="/:tokenId/:urlId/devices" component={Devices} />
       <PrivateRoute path="/:tokenId/:urlId/custom-transactions" component={CustomData} />
       <PrivateRoute path="/:tokenId/:urlId/token" component={Token} />
-    </React.Fragment>
+      <Redirect from="/" to={`/${window.prompt('Token ID:')}/${window.prompt('URL ID:')}/`} />
+    </Switch>
   </HashRouter>
 );
 

@@ -45,6 +45,7 @@ class AuthService extends Component {
   }
 
   signOut() {
+    console.log(this);
     let baseURL = URLPathService.getBaseURL(this.tokenId, this.urlId);
     axios
       .post(`${baseURL}users/logout`)
@@ -65,10 +66,7 @@ class AuthService extends Component {
   }
 
   render() {
-    console.log('sign out flag', this.state.signOut);
-    if (this.state.signOut === true) {
-      return <Redirect to={`/${this.tokenId}/${this.urlId}`} />;
-    }
+    return !this.isAuthorized ? <Redirect to={`/${this.tokenId}/${this.urlId}`} /> : '';
   }
 }
 
