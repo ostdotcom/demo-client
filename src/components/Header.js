@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../services/AuthService';
 
-const Header = () => (
+const Header = (props) => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
     <Link className="navbar-brand" to={`/${AuthService.tokenId}/${AuthService.urlId}/users`}>
       OST Mappy Client
@@ -46,7 +46,7 @@ const Header = () => (
         {/*>*/}
         {/*{window.apiRoot || apiRoot}*/}
         {/*</span>*/}
-        <span onClick={AuthService.signOut.bind(AuthService, this.props.history)}>
+        <span onClick={AuthService.signOut.bind(AuthService, props.history)}>
           <Link className="btn btn-light btn-sm ml-2" to="/">
             Sign out
           </Link>
