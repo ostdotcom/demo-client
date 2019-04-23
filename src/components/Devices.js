@@ -31,11 +31,13 @@ class Devices extends Component {
     axios
       .get(`${baseURL}devices`)
       .then((res) => {
+        this.setState({
+          isLoaded: true
+        });
         if (res.data.data.devices.length === 0) return;
         this.setState({
           addresses: res.data.data.devices,
-          currentAddress: res.data.data.devices[0].address,
-          isLoaded: true
+          currentAddress: res.data.data.devices[0].address
         });
       })
       .catch((err) => {
