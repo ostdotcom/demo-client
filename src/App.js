@@ -15,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     render={(props) =>
       AuthService.getAuthStatus() ? (
         <React.Fragment>
-          <Header />
+          <Header {...props} />
           <div className="container">
             <div className="row">
               <div className="col-12">
