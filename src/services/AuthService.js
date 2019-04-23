@@ -66,7 +66,9 @@ class AuthService extends Component {
   }
 
   render() {
-    return !this.isAuthorized ? <Redirect to={`/${this.tokenId}/${this.urlId}`} /> : '';
+    if (!this.isAuthorized) {
+      return <Redirect to={`/${this.tokenId}/${this.urlId}`} />;
+    }
   }
 }
 

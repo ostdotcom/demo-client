@@ -31,7 +31,7 @@ class Devices extends Component {
     axios
       .get(`${baseURL}devices`)
       .then((res) => {
-        if (!res.data.data.devices) return;
+        if (res.data.data.devices.length === 0) return;
         this.setState({
           addresses: res.data.data.devices,
           currentAddress: res.data.data.devices[0].address,
