@@ -31,7 +31,7 @@ class TxDetails extends Component {
     });
     let baseURL = URLPathService.getBaseURL(this.props.match.params.tokenId, this.props.match.params.urlId);
     axios
-      .get(`${baseURL}users/${this.props.match.params.userId}`)
+      .get(`${baseURL}users/${this.props.match.params.userId}/detail`)
       .then((res) => {
         this.setState({
           user: res.data.data,
