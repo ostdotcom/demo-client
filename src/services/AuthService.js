@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
 import axios from 'axios/index';
 import cookie from 'react-cookies';
 import URLPathService from './URLPathService';
-import { Redirect } from 'react-router-dom';
 
-class AuthService extends Component {
-  constructor(props) {
-    super(props);
+class AuthService {
+  constructor() {
     this.isAuthorized = cookie.load('fe_logIn') || false;
     this.tokenId = '';
     this.urlId = '';
@@ -44,8 +41,7 @@ class AuthService extends Component {
       });
   }
 
-  signOut() {
-    console.log(this);
+  signOut(historyParam) {
     let baseURL = URLPathService.getBaseURL(this.tokenId, this.urlId);
     axios
       .post(`${baseURL}users/logout`)
@@ -56,6 +52,7 @@ class AuthService extends Component {
           this.setState({
             signOut: true
           });
+          historyParam.push(`/${this.tokenId}/${this.urlId}/`);
         } else {
           console.log('Could not sign out!');
         }
@@ -63,13 +60,6 @@ class AuthService extends Component {
       .catch((err) => {
         console.log(err);
       });
-  }
-
-  render() {
-    console.log(this);
-    if (this.state.signOut) {
-      return <Redirect to={`/${this.tokenId}/${this.urlId}`} />;
-    }
   }
 }
 
