@@ -17,7 +17,7 @@ class Devices extends Component {
     super(props);
     this.state = {
       currentAddress: '',
-      addresses: null,
+      addresses: [],
       error: null,
       isLoaded: false
     };
