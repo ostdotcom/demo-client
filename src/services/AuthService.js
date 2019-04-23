@@ -20,8 +20,7 @@ class AuthService {
     axios
       .post(`${baseURL}login`, {
         username: params.username,
-        password: params.password,
-        withCredentials: true
+        password: params.password
       })
       .then((res) => {
         if (res.data.success) {
