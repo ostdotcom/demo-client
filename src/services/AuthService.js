@@ -66,7 +66,7 @@ class AuthService extends Component {
   }
 
   render() {
-    if (this.signOut) {
+    if (this.state.signOut) {
       return <Redirect to={`/${this.tokenId}/${this.urlId}`} />;
     }
   }
