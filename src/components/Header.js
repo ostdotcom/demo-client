@@ -4,7 +4,7 @@ import AuthService from '../services/AuthService';
 
 const Header = () => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-    <Link className="navbar-brand" to={`${AuthService.tokenId}/${AuthService.urlId}/users`}>
+    <Link className="navbar-brand" to={`/${AuthService.tokenId}/${AuthService.urlId}/users`}>
       OST Mappy Client
     </Link>
     <button
@@ -22,17 +22,17 @@ const Header = () => (
     <div className="collapse navbar-collapse" id="menu">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <Link className="nav-link" to={`${AuthService.tokenId}/${AuthService.urlId}/users`}>
+          <Link className="nav-link" to={`/${AuthService.tokenId}/${AuthService.urlId}/users`}>
             Users
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to={`${AuthService.tokenId}/${AuthService.urlId}/custom-transactions`}>
+          <Link className="nav-link" to={`/${AuthService.tokenId}/${AuthService.urlId}/custom-transactions`}>
             Custom Transactions
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to={`${AuthService.tokenId}/${AuthService.urlId}/token`}>
+          <Link className="nav-link" to={`/${AuthService.tokenId}/${AuthService.urlId}/token`}>
             Token
           </Link>
         </li>
