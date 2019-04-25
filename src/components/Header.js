@@ -46,11 +46,7 @@ const Header = (props) => (
         {/*>*/}
         {/*{window.apiRoot || apiRoot}*/}
         {/*</span>*/}
-        <span onClick={AuthService.signOut.bind(AuthService, props.history)}>
-          <Link className="btn btn-light btn-sm ml-2" to="/">
-            Sign out
-          </Link>
-        </span>
+        <span onClick={AuthService.signOut.bind(AuthService, props.history)}>Sign out</span>
       </div>
     </div>
   </nav>

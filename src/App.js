@@ -47,7 +47,7 @@ const App = () => (
       <PrivateRoute path="/:tokenId/:urlId/devices" component={Devices} />
       <PrivateRoute path="/:tokenId/:urlId/custom-transactions" component={CustomData} />
       <PrivateRoute path="/:tokenId/:urlId/token" component={Token} />
-      {/*<Redirect from="/" to={`/${window.prompt('Token ID:')}/${window.prompt('URL ID:')}/`} />*/}
+      <Redirect from="/" to={`/${window.prompt('Token ID:')}/${window.prompt('URL ID:')}/`} />
     </Switch>
   </HashRouter>
 );
