@@ -46,7 +46,7 @@ class AuthService {
         if (res.data.success) {
           this.isAuthorized = false;
           cookie.remove('fe_logIn');
-          historyParam.push(`/${this.tokenId}/${this.urlId}/login`);
+          historyParam.push(`/${this.tokenId}/${this.urlId}/`);
         } else {
           console.log('Could not sign out!');
         }
