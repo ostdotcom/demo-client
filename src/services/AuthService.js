@@ -5,8 +5,8 @@ import URLPathService from './URLPathService';
 class AuthService {
   constructor() {
     this.isAuthorized = cookie.load('fe_logIn') || false;
-    this.tokenId = '';
-    this.urlId = '';
+    this.tokenId = cookie.load('token_id') || '';
+    this.urlId = cookie.load('url_id') || '';
   }
 
   getAuthStatus() {
@@ -26,6 +26,8 @@ class AuthService {
         if (res.data.success) {
           this.isAuthorized = true;
           cookie.save('fe_logIn', 'true');
+          cookie.save('token_id', tokenId);
+          cookie.save('url_id', urlId);
           successCallback();
         } else {
           console.log('Unauthorized user!');
@@ -46,6 +48,8 @@ class AuthService {
         if (res.data.success) {
           this.isAuthorized = false;
           cookie.remove('fe_logIn');
+          cookie.remove('token_id');
+          cookie.remove('url_id');
           historyParam.push(`/${this.tokenId}/${this.urlId}/`);
         } else {
           console.log('Could not sign out!');
