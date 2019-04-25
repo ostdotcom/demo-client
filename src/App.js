@@ -41,13 +41,13 @@ const PublicRoute = ({ component: Component, ...rest }) => (
 const App = () => (
   <HashRouter basename={window.location.pathname}>
     <Switch>
-      <PublicRoute path="/:tokenId/:urlId/login" component={Login} />
+      <PublicRoute exact path="/:tokenId/:urlId/" component={Login} />
       <PrivateRoute path="/:tokenId/:urlId/users" component={List} />
       <PrivateRoute path="/:tokenId/:urlId/user/:userId" component={TxDetails} />
       <PrivateRoute path="/:tokenId/:urlId/devices" component={Devices} />
       <PrivateRoute path="/:tokenId/:urlId/custom-transactions" component={CustomData} />
       <PrivateRoute path="/:tokenId/:urlId/token" component={Token} />
-      <Redirect exact from="/" to={`/${window.prompt('Token ID:')}/${window.prompt('URL ID:')}/login`} />
+      <Redirect from="/" to={`/${window.prompt('Token ID:')}/${window.prompt('URL ID:')}/`} />
     </Switch>
   </HashRouter>
 );
