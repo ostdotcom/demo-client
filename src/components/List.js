@@ -48,7 +48,7 @@ class List extends Component {
           isLoaded: true,
           hasPrevious: page > 1
         });
-        if (users.length > 0) {
+        if (users && users.length > 0) {
           this.setState({
             users,
             hasNext: !(users.length < USER_COUNT || users.length === 0)
