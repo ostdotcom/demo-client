@@ -42,7 +42,7 @@ class List extends Component {
     axios
       .get(`${baseURL}users?page=${page}&q=${searchCriteria}`)
       .then((res) => {
-        const users = res.data.data[res.data.data.result_type];
+        const users = res.data.data && res.data.data[res.data.data.result_type];
         this.page = page;
         this.setState({
           isLoaded: true,

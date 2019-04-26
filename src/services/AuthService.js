@@ -13,7 +13,7 @@ class AuthService {
     return this.isAuthorized;
   }
 
-  signIn(params, successCallback, tokenId, urlId) {
+  signIn(params, successCallback, errorCallback, tokenId, urlId) {
     let baseURL = URLPathService.getBaseURL(tokenId, urlId);
     this.tokenId = tokenId;
     this.urlId = urlId;
@@ -32,11 +32,13 @@ class AuthService {
         } else {
           console.log('Unauthorized user!');
           this.isAuthorized = false;
+          errorCallback(res);
         }
       })
       .catch((err) => {
         console.log(err);
         this.isAuthorized = false;
+        errorCallback(err);
       });
   }
 

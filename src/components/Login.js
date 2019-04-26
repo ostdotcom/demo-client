@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from '../services/AuthService';
 import { Redirect } from 'react-router-dom';
+import { Error } from './Loader';
 
 export default class Login extends Component {
   constructor() {
@@ -8,7 +9,8 @@ export default class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      redirect: false
+      redirect: false,
+      error: null
     };
     this.auth = AuthService;
   }
@@ -32,12 +34,24 @@ export default class Login extends Component {
       username: this.state.username,
       password: this.state.password
     };
-    this.auth.signIn(params, this.successCallback, this.props.match.params.tokenId, this.props.match.params.urlId);
+    this.auth.signIn(
+      params,
+      this.successCallback,
+      this.errorCallback,
+      this.props.match.params.tokenId,
+      this.props.match.params.urlId
+    );
   };
 
   successCallback = () => {
     this.setState({
       redirect: true
+    });
+  };
+
+  errorCallback = (err) => {
+    this.setState({
+      error: err
     });
   };
 
@@ -48,6 +62,9 @@ export default class Login extends Component {
     return (
       <div className="container">
         <div className="row">
+          <div className="col-12">
+            {this.state.error ? <Error class="alert-danger" message="Unable to login." /> : ''}
+          </div>
           <div className="col-4 mx-auto">
             <h2 className="my-4 text-center">Login</h2>
             <form>
