@@ -15,7 +15,7 @@ import URLPathService from '../services/URLPathService';
 /*
  * Module constants
  */
-const USER_COUNT = 25;
+const USER_COUNT = 24;
 
 class List extends Component {
   constructor(props) {
