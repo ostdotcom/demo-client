@@ -27,6 +27,7 @@ class CustomData extends Component {
       addresses: [],
       currentTokenId: null,
       currentUserId: '',
+      decimals: null,
       QRSeed: null,
       actionId: 0,
       actionLabel: dataMap[0]._label,
@@ -83,7 +84,8 @@ class CustomData extends Component {
     axios
       .get(`${baseURL}users`)
       .then((res) => {
-        const users = res.data.data.users;
+        const users = res.data.data && res.data.data[res.data.data.result_type],
+          decimals = res.data.data && res.data.data.price_point.keys()[0].decimals;
         if (users.length > 0) {
           users.forEach(function(user, userIndex) {
             if (user.token_holder_address) {
@@ -93,7 +95,8 @@ class CustomData extends Component {
         }
         this.setState({
           filteredUsers,
-          isLoaded: true
+          isLoaded: true,
+          decimals
         });
       })
       .catch((err) => {
@@ -131,10 +134,8 @@ class CustomData extends Component {
   };
 
   handleAmountChange = (amount, index) => {
-    let amounts = this.state.amounts,
-      amtBn = new BN(amount),
-      powBn = new BN(18);
-    amounts[index] = amtBn.pow(powBn).toString();
+    let amounts = this.state.amounts;
+    amounts[index] = new BN(amount).mul(new BN(10).pow(new BN(this.state.decimals))).toString();
     this.setState({
       amounts,
       QRSeed: this.getQRCodeData()
