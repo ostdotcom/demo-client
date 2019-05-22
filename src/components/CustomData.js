@@ -1,8 +1,16 @@
+/*
+ * External dependencies
+ */
 import React, { Component } from 'react';
 import CustomDataItem from './CustomDataItem';
 import axios from 'axios/index';
-import { dataMap } from '../constants';
 import QRCode from 'qrcode.react';
+import BN from 'bn.js';
+
+/*
+ * Internal dependencies
+ */
+import { dataMap } from '../constants';
 import { Loader, Error } from './Loader';
 import CustomInputDataItem from './CustomInputDataItem';
 import URLPathService from '../services/URLPathService';
@@ -123,8 +131,10 @@ class CustomData extends Component {
   };
 
   handleAmountChange = (amount, index) => {
-    let amounts = this.state.amounts;
-    amounts[index] = amount;
+    let amounts = this.state.amounts,
+      amtBn = new BN(amount),
+      powBn = new BN(18);
+    amounts[index] = amtBn.pow(powBn).toString();
     this.setState({
       amounts,
       QRSeed: this.getQRCodeData()

@@ -12,11 +12,6 @@ import { Loader, Error } from './Loader';
 import SearchBox from './SearchBox';
 import URLPathService from '../services/URLPathService';
 
-/*
- * Module constants
- */
-const USER_COUNT = 24;
-
 class List extends Component {
   constructor(props) {
     super(props);
@@ -43,6 +38,7 @@ class List extends Component {
       .get(`${baseURL}users?page=${page}&q=${searchCriteria}`)
       .then((res) => {
         const users = res.data.data && res.data.data[res.data.data.result_type];
+        let hasNextPage = res.data.data && res.data.data.meta.next_page_payload.page >= 2;
         this.page = page;
         this.setState({
           isLoaded: true,
@@ -51,7 +47,7 @@ class List extends Component {
         if (users && users.length > 0) {
           this.setState({
             users,
-            hasNext: !(users.length < USER_COUNT || users.length === 0)
+            hasNext: hasNextPage
           });
         } else {
           this.setState({

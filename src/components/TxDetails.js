@@ -34,7 +34,7 @@ class TxDetails extends Component {
       .get(`${baseURL}users/${this.props.match.params.userId}/detail`)
       .then((res) => {
         this.setState({
-          user: res.data.data,
+          user: res.data.data && res.data.data[res.data.data.result_type],
           isLoaded: true
         });
       })
