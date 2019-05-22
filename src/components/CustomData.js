@@ -84,11 +84,8 @@ class CustomData extends Component {
     axios
       .get(`${baseURL}users`)
       .then((res) => {
-        console.log(Object.keys(res.data.data.price_point));
-        console.log(Object.keys(res.data.data.price_point)[0]);
-        console.log(Object.keys(res.data.data.price_point)[0].decimals);
         const users = res.data.data && res.data.data[res.data.data.result_type],
-          decimals = res.data.data && Object.keys(res.data.data.price_point)[0].decimals;
+          decimals = res.data.data && res.data.data.price_point[Object.keys(res.data.data.price_point)[0]].decimals;
         if (users.length > 0) {
           users.forEach(function(user, userIndex) {
             if (user.token_holder_address) {
