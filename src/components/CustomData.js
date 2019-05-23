@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import CustomDataItem from './CustomDataItem';
 import axios from 'axios/index';
 import QRCode from 'qrcode.react';
-import BigNumber from './bignumber.mjs';
+import BigNumber from 'bignumber.js';
 
 /*
  * Internal dependencies
