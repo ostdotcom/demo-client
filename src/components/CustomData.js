@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import CustomDataItem from './CustomDataItem';
 import axios from 'axios/index';
 import QRCode from 'qrcode.react';
-import BN from 'bn.js';
+import BigNumber from './bignumber.mjs';
 
 /*
  * Internal dependencies
@@ -135,7 +135,9 @@ class CustomData extends Component {
 
   handleAmountChange = (amount, index) => {
     let amounts = this.state.amounts;
-    amounts[index] = new BN(amount).mul(new BN(10).pow(new BN(this.state.decimals))).toString();
+    amounts[index] = new BigNumber(amount)
+      .multipliedBy(new BigNumber(10).pow(new BigNumber(this.state.decimals)))
+      .toString();
     this.setState({
       amounts,
       QRSeed: this.getQRCodeData()
