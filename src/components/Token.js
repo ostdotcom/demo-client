@@ -26,7 +26,8 @@ export default class Token extends Component {
       .get(`${baseURL}token`)
       .then((res) => {
         if (res.data.success) {
-          this.ost_to_fiat_conversion_ratio = res.data && res.data.data && res.data.data['price_point']['OST']['USD'];
+          this.ost_to_fiat_conversion_ratio =
+            res.data && res.data.data && res.data.data.price_point[Object.keys(res.data.data.price_point)[0]]['USD'];
           this.ost_to_bt_conversion_ratio = res.data && res.data.data && res.data.data['token']['conversion_factor'];
           this.decimals = res.data && res.data.data && res.data.data['token']['decimals'];
           this.priceOracle = new PriceOracle({
