@@ -135,9 +135,7 @@ class CustomData extends Component {
 
   handleAmountChange = (amount, index) => {
     let amounts = this.state.amounts;
-    amounts[index] = new BigNumber(amount)
-      .multipliedBy(new BigNumber(10).pow(new BigNumber(this.state.decimals)))
-      .toString();
+    amounts[index] = new BigNumber(amount).times(new BigNumber(10).pow(new BigNumber(this.state.decimals))).toString();
     this.setState({
       amounts,
       QRSeed: this.getQRCodeData()
