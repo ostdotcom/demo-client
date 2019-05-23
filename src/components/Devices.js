@@ -74,7 +74,8 @@ class Devices extends Component {
       );
     if (this.state.isLoaded && this.state.addresses.length === 0)
       return <Error class="alert-light" message="No devices found!" />;
-    this.state.QRSeed && console.log('QRSeed data:', this.state.QRSeed);
+    this.state.QRSeed &&
+      console.log('QRSeed data:', this.state.QRSeed, 'QRSeed data stringified:', JSON.stringify(this.state.QRSeed));
     return (
       <React.Fragment>
         <div className="row">

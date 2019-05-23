@@ -69,7 +69,8 @@ class TxDetails extends Component {
           <Loader />
         </div>
       );
-    this.state.QRSeed && console.log('QRSeed data:', this.state.QRSeed);
+    this.state.QRSeed &&
+      console.log('QRSeed data:', this.state.QRSeed, 'QRSeed data stringified:', JSON.stringify(this.state.QRSeed));
     return (
       <React.Fragment>
         <div className="row">
