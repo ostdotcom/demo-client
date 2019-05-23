@@ -130,7 +130,7 @@ export default class Token extends Component {
         <div className="row mt-4">
           <div className="col-4">
             <label htmlFor="OST_input" className="mr-2">
-              Value in OST
+              Value in OST/USDC
             </label>
             <input
               type="text"
