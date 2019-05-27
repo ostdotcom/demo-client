@@ -81,11 +81,10 @@ class CustomData extends Component {
     this.setState({ isLoaded: false });
     let filteredUsers = [],
       baseURL = URLPathService.getBaseURL(this.props.match.params.tokenId, this.props.match.params.urlId);
-    axios
-      .get(`${baseURL}users`)
+    Promise.all([axios.get(`${baseURL}users`), axios.get(`${baseURL}token`)])
       .then((res) => {
-        const users = res.data.data && res.data.data[res.data.data.result_type],
-          decimals = res.data.data && res.data.data.price_point[Object.keys(res.data.data.price_point)[0]].decimals;
+        const users = res[0].data.data && res[0].data.data[res[0].data.data.result_type],
+          decimals = res[1].data && res[1].data.data && res[1].data.data['token']['decimals'];
         if (users.length > 0) {
           users.forEach(function(user, userIndex) {
             if (user.token_holder_address) {
