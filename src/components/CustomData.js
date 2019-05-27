@@ -133,8 +133,12 @@ class CustomData extends Component {
   };
 
   handleAmountChange = (amount, index) => {
-    let amounts = this.state.amounts;
-    amounts[index] = new BigNumber(amount).times(new BigNumber(10).pow(new BigNumber(this.state.decimals))).toString();
+    let amounts = this.state.amounts,
+      decimals = this.state.decimals;
+    if (this.state.actionId === 1) {
+      decimals = 18; //Pay is always in USD
+    }
+    amounts[index] = new BigNumber(amount).times(new BigNumber(10).pow(new BigNumber(decimals))).toString();
     this.setState({
       amounts,
       QRSeed: this.getQRCodeData()
