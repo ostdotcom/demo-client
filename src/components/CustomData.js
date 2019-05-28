@@ -47,18 +47,19 @@ class CustomData extends Component {
     }
     let id = this.state.actionId,
       decimals = this.state.decimals,
-      QRSeed = JSON.parse(JSON.stringify(dataMap[id]));
+      QRSeed = JSON.parse(JSON.stringify(dataMap[id])),
+      calculatedAmounts = [];
     if (id == '1') {
       decimals = 18; //Pay is always in USD
     }
     for (var i = 0; i < this.state.amounts.length; i++) {
-      this.state.amounts[i] = new BigNumber(this.state.amounts[i])
-        .times(new BigNumber(10).pow(new BigNumber(decimals)))
-        .toString();
+      calculatedAmounts.push(
+        new BigNumber(this.state.amounts[i]).times(new BigNumber(10).pow(new BigNumber(decimals))).toString()
+      );
     }
     QRSeed.d['ads'] = this.sanitizeArray(this.state.addresses);
     QRSeed.d['tid'] = this.state.currentTokenId;
-    QRSeed.d['ams'] = this.sanitizeArray(this.state.amounts);
+    QRSeed.d['ams'] = this.sanitizeArray(calculatedAmounts);
     delete QRSeed['_label'];
     return QRSeed;
   };
