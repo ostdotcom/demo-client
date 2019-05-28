@@ -46,8 +46,16 @@ class CustomData extends Component {
       return '';
     }
     let id = this.state.actionId,
+      decimals = this.state.decimals,
       QRSeed = JSON.parse(JSON.stringify(dataMap[id]));
-
+    if (id == '1') {
+      decimals = 18; //Pay is always in USD
+    }
+    for (var i = 0; i < this.state.amounts.length; i++) {
+      this.state.amounts[i] = new BigNumber(this.state.amounts[i])
+        .times(new BigNumber(10).pow(new BigNumber(decimals)))
+        .toString();
+    }
     QRSeed.d['ads'] = this.sanitizeArray(this.state.addresses);
     QRSeed.d['tid'] = this.state.currentTokenId;
     QRSeed.d['ams'] = this.sanitizeArray(this.state.amounts);
@@ -133,12 +141,8 @@ class CustomData extends Component {
   };
 
   handleAmountChange = (amount, index) => {
-    let amounts = this.state.amounts,
-      decimals = this.state.decimals;
-    if (this.state.actionId == '1') {
-      decimals = 18; //Pay is always in USD
-    }
-    amounts[index] = new BigNumber(amount).times(new BigNumber(10).pow(new BigNumber(decimals))).toString();
+    let amounts = this.state.amounts;
+    amounts[index] = amount;
     this.setState({
       amounts,
       QRSeed: this.getQRCodeData()
